@@ -1,13 +1,13 @@
 import { Routes, Route } from "react-router-dom";
 import { lazy } from "react";
 
-const Homepage = lazy(() => import('../pages/HomePage'));
+const LoginPage = lazy(() => import('../pages/LoginPage'));
 
 const AppRouter = () => {
 
     return (
         <Routes>
-            <Route path="/" element={<Homepage />} />
+            <Route index element={<LoginPage />} />
         </Routes>
     )
 }
