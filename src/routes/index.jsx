@@ -9,7 +9,7 @@ const AppRouter = () => {
         <Routes>
             <Route index element={<LoginPage />} />
         </Routes>
-    )
-}
+    );
+};
 
 export default AppRouter;
