@@ -1,1 +1,22 @@
 @import "tailwindcss";
+
+@font-face {
+    font-family: AlbertSans;
+    src: url('./assets/fonts/AlbertSans-Regular.ttf');
+}
+
+@font-face {
+    font-family: AlbertSans-SemiBold;
+    src: url('./assets/fonts/AlbertSans-SemiBold.ttf');
+}
+
+@font-face {
+    font-family: AlbertSans-Bold;
+    src: url('./assets/fonts/AlbertSans-Bold.ttf');
+}
+
+@theme {
+    --font-AlbertSans: "AlbertSans";
+    --font-AlbertSans-SemiBold: "AlbertSans-SemiBold";
+    --font-AlbertSans-Bold: "ALbertSans-Bold";
+}
