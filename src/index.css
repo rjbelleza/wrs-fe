@@ -19,4 +19,9 @@
     --font-AlbertSans: "AlbertSans";
     --font-AlbertSans-SemiBold: "AlbertSans-SemiBold";
     --font-AlbertSans-Bold: "ALbertSans-Bold";
+
+    --color-primary: #16325b;
+    --color-primary-hover: #1f4782;
+    --color-secondary: #227B94;
+    --color-secondary-hover: #155263;
 }
