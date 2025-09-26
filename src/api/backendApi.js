@@ -32,12 +32,7 @@ backendApi.interceptors.response.use(
     },
     async (error) => {
         if (axios.isAxiosError(error) && error.response && error.response.status === 401) {
-            console.error("Unauthorized request. Clearing session and redirecting to login...");
-
-            await localforage.removeItem('api-token');
-            await localforage.removeItem('user');
-
-            delete backendApi.defaults.headers.common['Authorization'];
+            window.location.href = "/session-expired";
         }
         return Promise.reject(error);
     }
