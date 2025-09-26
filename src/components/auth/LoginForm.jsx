@@ -11,7 +11,7 @@ const LoginForm = () => {
                 <div className="flex flex-col gap-2">
                     <label htmlFor="username">Username</label>
                     <input 
-                        type="email"
+                        type="text"
                         id="username"
                         name="username"
                         className="border border-gray-400 rounded py-2 px-5"
