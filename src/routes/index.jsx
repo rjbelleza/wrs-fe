@@ -1,8 +1,8 @@
 import { Routes, Route } from "react-router-dom";
 import { lazy } from "react";
-import SessionExpired from "../components/auth/SessionExpired";
+import SessionExpired from "@/components/auth/SessionExpired";
 
-const LoginPage = lazy(() => import('../pages/LoginPage'));
+const LoginPage = lazy(() => import('@/pages/LoginPage'));
 
 const AppRouter = () => {
 

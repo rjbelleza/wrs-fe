@@ -1,8 +1,8 @@
-import backendApi from "../api/backendApi";
+import backendApi from "@/api/backendApi";
 import { useState, useEffect, useCallback } from "react";
 import localforage from "localforage";
-import { useSafeAsync } from "../hooks/useSafeAsync";
-import { AuthContext } from "../hooks/useAuth";
+import { useSafeAsync } from "@/hooks/useSafeAsync";
+import { AuthContext } from "@/hooks/useAuth";
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
