@@ -31,6 +31,6 @@ export const logoutUser = async () => {
         }
 
         console.error("Error during logout: ", err);
-        return errorMessage;
+        throw new Error(errorMessage);
     }
 };
