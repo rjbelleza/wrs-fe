@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useCallback } from "react";
 
 export function useSafeAsync() {
     const isMountedRef = useRef(true);
@@ -9,9 +9,10 @@ export function useSafeAsync() {
         };
     }, []);
 
-    const runAsync = async (asyncFn, onSuccess, onError, onFinally) => {
+    const runAsync = useCallback(async (asyncFn, onSuccess, onError, onFinally) => {
         try {
             const result = await asyncFn();
+
             if (isMountedRef.current && onSuccess) {
                 onSuccess(result);
             }
@@ -24,7 +25,7 @@ export function useSafeAsync() {
                 onFinally();
             }
         }
-    };
+    }, []);
 
     return { runAsync };
 };

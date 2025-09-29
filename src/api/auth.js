@@ -1,7 +1,7 @@
 import backendApi from "@/api/backendApi";
 import axios from "axios";
 
-export const loginUser = async ({ credentials }) => {
+export const loginUser = async (credentials) => {
     try {
         const res = await backendApi.post('/login', credentials);
 
@@ -14,7 +14,7 @@ export const loginUser = async ({ credentials }) => {
         }
 
         console.error("Error during login: ", err);
-        return errorMessage;
+        throw new Error(errorMessage);
     }
 };
 

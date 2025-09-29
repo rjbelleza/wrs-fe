@@ -1,5 +1,5 @@
 import backendApi from "@/api/backendApi";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import localforage from "localforage";
 import { useSafeAsync } from "@/hooks/useSafeAsync";
 import { AuthContext } from "@/hooks/useAuth";
@@ -12,6 +12,7 @@ export const AuthProvider = ({ children }) => {
     const [authError, setAuthError] = useState("");
 
     const { runAsync } = useSafeAsync();
+    const hasLoadedRef = useRef(false);
 
     async function clearAuthData() {
         try {
@@ -59,6 +60,11 @@ export const AuthProvider = ({ children }) => {
 
     // Load auth data from storage on initial app load
     useEffect(() => {
+        if (hasLoadedRef.current) return;
+        
+        hasLoadedRef.current = true;
+
+        console.log("useEffect running, starting auth load");
         runAsync(
             async () => {
                 const storedToken = await localforage.getItem('api-token');
@@ -79,6 +85,7 @@ export const AuthProvider = ({ children }) => {
                 await setAuthData(null, null);
             },
             () => {
+                console.log("Setting isLoadingAuth to false");
                 setIsLoadingAuth(false);
             }
         );
