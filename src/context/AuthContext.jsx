@@ -1,5 +1,5 @@
 import backendApi from "@/api/backendApi";
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback } from "react";
 import localforage from "localforage";
 import { useSafeAsync } from "@/hooks/useSafeAsync";
 import { AuthContext } from "@/hooks/useAuth";
@@ -12,9 +12,8 @@ export const AuthProvider = ({ children }) => {
     const [authError, setAuthError] = useState("");
 
     const { runAsync } = useSafeAsync();
-    const hasLoadedRef = useRef(false);
 
-    async function clearAuthData() {
+    const clearAuthData = useCallback(async () => {
         try {
             await Promise.all([
                 localforage.removeItem("api-token"),
@@ -30,7 +29,7 @@ export const AuthProvider = ({ children }) => {
         setUser(null);
         setToken(null);
         setIsLoggedIn(false);
-    };
+    }, []);
 
     const setAuthData = useCallback(async (newToken, newUser) => {
         try {
@@ -56,14 +55,10 @@ export const AuthProvider = ({ children }) => {
 
             await clearAuthData();
         }
-    }, []);
+    }, [clearAuthData]);
 
     // Load auth data from storage on initial app load
     useEffect(() => {
-        if (hasLoadedRef.current) return;
-        
-        hasLoadedRef.current = true;
-
         console.log("useEffect running, starting auth load");
         runAsync(
             async () => {
@@ -97,7 +92,7 @@ export const AuthProvider = ({ children }) => {
 
     const logout = useCallback(async () => {
         await clearAuthData();
-    }, []);
+    }, [clearAuthData]);
 
     const value = {
         user,
