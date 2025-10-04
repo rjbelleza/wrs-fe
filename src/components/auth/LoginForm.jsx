@@ -4,9 +4,11 @@ import { useNavigate } from "react-router-dom";
 import useAuth from "@/hooks/useAuth";
 import { handleInputChange } from "@/utils/helpers";
 import { checkRole, isEmptyInput } from "@/utils/validators";
+import { Eye, EyeOff } from "lucide-react";
 
 const LoginForm = () => {
     const [formData, setFormData] = useState({ username: "", password: "" });
+    const [showPass, setShowPass] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState("");
 
@@ -61,17 +63,30 @@ const LoginForm = () => {
                 </div>
                 <div className="flex flex-col gap-2">
                     <label htmlFor="password">Password</label>
-                    <input 
-                        type="password"
-                        id="password"
-                        name="password"
-                        className="border border-gray-400 rounded py-2 px-5"
-                        placeholder="Enter password here.."
-                        value={formData.password}
-                        onChange={(e) => handleInputChange(e, setFormData)}
-                        autocomplete="off"
-                        required
-                    />
+                    <div className="relative w-full">
+                        <input
+                            type={showPass ? 'text' : 'password'}
+                            id="password"
+                            name="password"
+                            className="border border-gray-400 w-full rounded py-2 px-5"
+                            placeholder="Enter password here.."
+                            value={formData.password}
+                            onChange={(e) => handleInputChange(e, setFormData)}
+                            autoComplete="off"
+                            required
+                        />
+                        <button 
+                            type="button"
+                            className="absolute right-2 bottom-2 text-primary cursor-pointer"
+                            onClick={() => setShowPass(!showPass)}
+                        >
+                            { !showPass ? (
+                                <Eye  />
+                            ) : (
+                                <EyeOff />
+                            )}
+                        </button>
+                    </div>
                 </div>
                 <div>
                     {error && (<p>{error}</p>)}
