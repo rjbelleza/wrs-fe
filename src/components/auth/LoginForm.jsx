@@ -69,6 +69,7 @@ const LoginForm = () => {
                         placeholder="Enter password here.."
                         value={formData.password}
                         onChange={(e) => handleInputChange(e, setFormData)}
+                        autocomplete="off"
                         required
                     />
                 </div>
