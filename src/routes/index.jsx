@@ -17,14 +17,14 @@ const AppRouter = () => {
             <Route index element={<LoginPage />} />
             <Route path="session-expired" element={<SessionExpired />} />
 
-            <Route element={<ProtectedRoute element={<AdminLayout />} role={["admin"]} />}>
-                <Route path="admin">
+            <Route element={<ProtectedRoute role={["admin"]} />}>
+                <Route path="admin" element={<AdminLayout />}>
                     <Route index element={<AdminDashboard />} />
                 </Route>
             </Route>
 
-            <Route element={<ProtectedRoute element={<StaffLayout />} role={["staff"]} />}>
-                <Route path="staff">
+            <Route element={<ProtectedRoute role={["staff"]} />}>
+                <Route path="staff" element={<StaffLayout />}>
                     <Route index element={<StaffDashboard />} />
                 </Route>
             </Route>

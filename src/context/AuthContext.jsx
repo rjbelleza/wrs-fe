@@ -68,21 +68,24 @@ export const AuthProvider = ({ children }) => {
                 return { storedToken, storedUser };
             },
             async ({ storedToken, storedUser }) => {
+                console.log("Retrieved User Data:", storedUser);
                 if (storedToken && storedUser) {
                     await setAuthData(storedToken, storedUser);
                 } else {
                     await setAuthData(null, null);
                 }
+
+                setIsLoadingAuth(false);
+                console.log("SUCCESS: Set Auth Data and isLoadingAuth to false");
             },
             async (err) => {
                 console.error("Error loading auth data: ", err);
                 setAuthError("Something went wrong.");
                 await setAuthData(null, null);
-            },
-            () => {
-                console.log("Setting isLoadingAuth to false");
+
                 setIsLoadingAuth(false);
-            }
+                console.log("SUCCESS: Set Auth Data and isLoadingAuth to false");
+            },
         );
     }, [setAuthData, runAsync]);
 

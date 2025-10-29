@@ -1,7 +1,7 @@
 import useAuth from "@/hooks/useAuth";
-import { Navigate } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 
-const ProtectedRoute = ({ element, role }) => {
+const ProtectedRoute = ({ role }) => {
     const { user, isLoadingAuth } = useAuth();
 
     console.log("Rendered with isLoadingAuth:", isLoadingAuth);
@@ -12,7 +12,7 @@ const ProtectedRoute = ({ element, role }) => {
 
     if (role && !role.includes(user.role)) return <Navigate to='/' replace />;
 
-    return element;
+    return <Outlet />;
 };
 
 export default ProtectedRoute;
