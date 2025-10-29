@@ -3,8 +3,6 @@ import { Navigate, Outlet } from "react-router-dom";
 
 const ProtectedRoute = ({ role }) => {
     const { user, isLoadingAuth } = useAuth();
-
-    console.log("Rendered with isLoadingAuth:", isLoadingAuth);
     
     if (isLoadingAuth) return <p>Loading...</p>;
 

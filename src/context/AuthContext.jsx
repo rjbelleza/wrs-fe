@@ -59,7 +59,6 @@ export const AuthProvider = ({ children }) => {
 
     // Load auth data from storage on initial app load
     useEffect(() => {
-        console.log("useEffect running, starting auth load");
         runAsync(
             async () => {
                 const storedToken = await localforage.getItem('api-token');
@@ -68,7 +67,6 @@ export const AuthProvider = ({ children }) => {
                 return { storedToken, storedUser };
             },
             async ({ storedToken, storedUser }) => {
-                console.log("Retrieved User Data:", storedUser);
                 if (storedToken && storedUser) {
                     await setAuthData(storedToken, storedUser);
                 } else {
@@ -76,7 +74,6 @@ export const AuthProvider = ({ children }) => {
                 }
 
                 setIsLoadingAuth(false);
-                console.log("SUCCESS: Set Auth Data and isLoadingAuth to false");
             },
             async (err) => {
                 console.error("Error loading auth data: ", err);
@@ -84,7 +81,6 @@ export const AuthProvider = ({ children }) => {
                 await setAuthData(null, null);
 
                 setIsLoadingAuth(false);
-                console.log("SUCCESS: Set Auth Data and isLoadingAuth to false");
             },
         );
     }, [setAuthData, runAsync]);
