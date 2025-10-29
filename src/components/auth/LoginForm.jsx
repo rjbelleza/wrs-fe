@@ -96,7 +96,7 @@ const LoginForm = () => {
                 <button
                     type="submit"
                     disabled={isLoading}
-                    className="w-full bg-primary disabled:bg-gray-400 hover:bg-primary-hover text-white rounded font-AlbertSans 
+                    className="w-full bg-blue-950 disabled:bg-gray-400 hover:bg-blue-900 text-white rounded font-AlbertSans 
                                py-2 cursor-pointer disabled:cursor-wait"
                 >
                     {isLoading ? "Logging in..." : "Login"}
