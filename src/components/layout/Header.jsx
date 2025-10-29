@@ -2,13 +2,14 @@ import { ChevronLeft, ChevronDown, Bell } from "lucide-react";
 import useAuth from "@/hooks/useAuth";
 import { useState } from "react";
 import { capitalizeFirst } from "@/utils/helpers";
+import { Link } from "react-router-dom";
 
 const Header = () => {
     const [openDropDown, setOpenDropDown] = useState();
 
     const { user } = useAuth();
 
-    const dropDownBaseClass = "hover:cursor-pointer hover:bg-gray-400 transition-all";
+    const dropDownBaseClass = "hover:cursor-pointer hover:bg-gray-300 transition-all";
 
     return (
         <div className="relative w-full h-15 bg-blue-950">
@@ -30,7 +31,7 @@ const Header = () => {
                     <div className="relative">
                         <button onClick={() => setOpenDropDown(!openDropDown)} className="hover:cursor-pointer">
                             <p className="flex items-center gap-3">
-                                <div className="h-2 w-2 bg-green-300 rounded-full"></div>
+                                <span className="h-2 w-2 bg-green-300 rounded-full"></span>
                                 {capitalizeFirst(user.firstname) + " " + capitalizeFirst(user.lastname)}
                                 <span>
                                     <ChevronDown width={15} />
@@ -40,7 +41,9 @@ const Header = () => {
                         {openDropDown && (
                             <div className="absolute left-0 -bottom-22 w-full h-fit text-center text-black bg-gray-200 shadow-md shadow-gray-300 border border-gray-400 rounded-sm">
                                 <p className={`${dropDownBaseClass} rounded-t-sm pt-3 pb-2`}>Settings</p>
-                                <p className={`${dropDownBaseClass} rounded-b-sm pb-3 pt-2`}>Logout</p>
+                                <Link to="/logout">
+                                    <p className={`${dropDownBaseClass} rounded-b-sm pb-3 pt-2`}>Logout</p>
+                                </Link>
                             </div>
                         )}
                     </div>
