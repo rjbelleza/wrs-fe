@@ -1,1 +1,1 @@
-Mini Capstone Shit
+mini capstone shit
