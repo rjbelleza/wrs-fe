@@ -7,6 +7,7 @@ const AdminLayout = lazy(() => import('@/layouts/AdminLayout'));
 const StaffLayout = lazy(() => import('@/layouts/StaffLayout'));
 
 const LoginPage = lazy(() => import('@/pages/LoginPage'));
+const Logout = lazy(() => import('@/components/auth/Logout'));
 const AdminDashboard = lazy(() => import('@/pages/admin/AdminDashboard'));
 const StaffDashboard = lazy(() => import('@/pages/staff/StaffDashboard'));
 
@@ -15,6 +16,7 @@ const AppRouter = () => {
     return (
         <Routes>
             <Route index element={<LoginPage />} />
+            <Route path="/logout" element={<Logout />} />
             <Route path="session-expired" element={<SessionExpired />} />
 
             <Route element={<ProtectedRoute role={["admin"]} />}>
