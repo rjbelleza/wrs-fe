@@ -35,7 +35,9 @@ const LoginForm = () => {
             const redirectTo = checkRole(res.user.role);
             navigate(redirectTo);
         } catch (err) {
-            setError(err || "Login failed. Please try again.");
+            const errorMessage = err.message || "Login failed. Please try again.";
+
+            setError(errorMessage);
         } finally {
             setIsLoading(false);
         }
@@ -89,7 +91,7 @@ const LoginForm = () => {
                     </div>
                 </div>
                 <div>
-                    {error && (<p>{error}</p>)}
+                    {error && (<p className="text-red-500">{error}</p>)}
                 </div>
                 <button
                     type="submit"
