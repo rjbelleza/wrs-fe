@@ -92,7 +92,7 @@ const LoginForm = () => {
                     </div>
                 </div>
                 <div>
-                    {error && (<p className="text-red-500">{error}</p>)}
+                    {error && (<p className="text-red-500 text-sm">{error}</p>)}
                 </div>
                 <button
                     type="submit"
