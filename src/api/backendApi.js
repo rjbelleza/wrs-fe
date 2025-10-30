@@ -32,7 +32,8 @@ backendApi.interceptors.response.use(
     },
     async (error) => {
         if (axios.isAxiosError(error) && error.response && error.response.status === 401) {
-            window.location.href = "/session-expired";
+            
+            console.log(error);
         }
         return Promise.reject(error);
     }

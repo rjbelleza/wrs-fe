@@ -27,15 +27,15 @@ export const loginUser = async (credentials) => {
 export const logoutUser = async () => {
     try {
         const res = await backendApi.post('/logout');
-
+        
         return res.data;
     } catch (err) {
         let errorMessage = "Logout failed. Please try again.";
 
         if (axios.isAxiosError(err) && err.response) {
-            if (err.message.data.response) {
-                errorMessage = err.response.data.error || errorMessage;
-                console.error("Error during logout: ", err);
+            if (err.response.data.message) {
+                errorMessage = err.response.data.message || errorMessage;
+                console.error("Error during logout: ", err.response.data.message);
             }
         }
 
