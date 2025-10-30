@@ -31,9 +31,11 @@ backendApi.interceptors.response.use(
         return response;
     },
     async (error) => {
-        if (axios.isAxiosError(error) && error.response && error.response.status === 401) {
-            
-            console.log(error);
+        const token = await localforage.getItem('api-token');
+        if (token) {
+            if (axios.isAxiosError(error) && error.response && error.response.status === 401) {
+                window.location.href = "/session-expired";
+            }
         }
         return Promise.reject(error);
     }
