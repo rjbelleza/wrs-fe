@@ -5,6 +5,7 @@ import useAuth from "@/hooks/useAuth";
 import { handleInputChange } from "@/utils/helpers";
 import { checkRole, isEmptyInput } from "@/utils/validators";
 import { Eye, EyeOff } from "lucide-react";
+import ButtonLoading from "@/components/loading/ButtonLoading";
 
 const LoginForm = () => {
     const [formData, setFormData] = useState({ username: "", password: "" });
@@ -97,9 +98,12 @@ const LoginForm = () => {
                     type="submit"
                     disabled={isLoading}
                     className="w-full bg-blue-950 disabled:bg-gray-400 hover:bg-blue-900 text-white rounded font-AlbertSans 
-                               py-2 cursor-pointer disabled:cursor-wait"
+                            py-2 cursor-pointer disabled:cursor-wait"
                 >
-                    {isLoading ? "Logging in..." : "Login"}
+                    {isLoading ? (
+                            <p className="flex justify-center gap-2"><ButtonLoading />Logging in..</p>
+                        ) : "Login"
+                    }
                 </button>
             </div>
         </form>

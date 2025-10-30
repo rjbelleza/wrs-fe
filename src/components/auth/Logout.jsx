@@ -33,7 +33,9 @@ const Logout = () => {
     }, [logout]);
 
     if (!isLoggedOut) {
-        return <div>Logging out...</div>
+        return <div className="flex justify-center items-center h-screen w-full">
+            <p className="text-xl font-AlbertSans-Bold text-blue-950 animate-bounce">Logging out..</p>
+        </div>
     }
 
     return <Navigate to="/" replace />
